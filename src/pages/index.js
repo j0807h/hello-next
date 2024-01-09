@@ -11,7 +11,7 @@ export default function Home({ results }) {
         <div key={movie.id} className="movie">
           <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} />
           <h4>{movie.original_title}</h4>
-        </div>
+        </div> 
       ))}
 
       <style jsx>{`
@@ -20,6 +20,9 @@ export default function Home({ results }) {
           grid-template-columns: 1fr 1fr;
           padding: 20px;
           gap: 20px;
+        }
+        .movie {
+          cursor: pointer;
         }
         .movie img {
           max-width: 100%;
@@ -39,7 +42,7 @@ export default function Home({ results }) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps() { /* back-end */
   const { results } = await (await fetch(`http://localhost:3000/api/movies`)).json();
   return { 
     props: { 
